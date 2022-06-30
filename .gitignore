@@ -1,5 +1,5 @@
 # Propriedades do banco de dados
-application\.properties
+*.properties
 
 # Compiled class file
 *.class
