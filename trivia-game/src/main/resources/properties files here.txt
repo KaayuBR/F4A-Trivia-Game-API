@@ -1,0 +1,9 @@
+create a application.properties file here
+
+This files must contain:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/mysql?useTimezone=true&serverTimezone=UTC
+spring.datasource.username="your mysql username (default is root)"
+spring.datasource.password="your mysql password"
+
+spring.jpa.hibernate.ddl-auto=update
