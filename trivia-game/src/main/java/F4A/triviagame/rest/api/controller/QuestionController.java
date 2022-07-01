@@ -11,26 +11,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import F4A.triviagame.rest.api.model.QuestionModel;
-import F4A.triviagame.rest.api.model.UserModel;
-import F4A.triviagame.rest.api.repository.UserRepository;
+import F4A.triviagame.rest.api.repository.QuestionRepository;
 
 @RestController
-public class UserController {
+public class QuestionController {
 	
 	@Autowired
-	private UserRepository repository;
+	private QuestionRepository repository;
 	
-	@GetMapping(path = "/api/usuario/{codigo}")
+	@GetMapping(path = "/api/questao/consultar/{codigo}")
 	public ResponseEntity consultar(@PathVariable("codigo") Integer codigo) {
-		System.out.println("Retornando o JSON do usuário com o código: "+codigo);
+		System.out.println("Retornando o JSON dos dados associados com o código: "+codigo);
 		return repository.findById(codigo)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 		
 	}
 	
-	@PostMapping(path = "/api/usuario/salvar")
-	public UserModel salvar(@RequestBody UserModel usuario) {
+	@PostMapping(path = "/api/questao/adicionar")
+	public QuestionModel adicionar(@RequestBody QuestionModel questao) {
 		int i = 1;
 		int lastId = 0;
 		while (i != lastId) {
@@ -44,26 +43,26 @@ public class UserController {
 		}
 		
 		int id = lastId++;
-		usuario.setCodigo(id);
-		System.out.println("Adicionado o usuário com o ID: "+id);
-		return repository.save(usuario);
+		questao.setCodigo(id);
+		System.out.println("Adicionado os dados da pergunta com o ID: "+id);
+		return repository.save(questao);
+	}
+
+	@PutMapping (path = "/api/questao/atualizar/{codigo}")
+	public QuestionModel atualizar(@PathVariable("codigo") Integer codigo, @RequestBody QuestionModel questao) {
+		questao.setCodigo(codigo);
+		System.out.println("Atualizado os dados da pergunta com o ID: "+codigo);
+		return repository.save(questao);
 	}
 	
-	@DeleteMapping (path = "/api/usuario/excluir/{codigo}")
+	@DeleteMapping (path = "/api/questao/excluir/{codigo}")
 	public void excluir(@PathVariable("codigo") Integer codigo) {
 		if(codigo != null) {
 			repository.deleteById(codigo);
-			System.out.println("Usuário associados com o ID "+codigo+" foram apagados com sucesso.");
+			System.out.println("Dados associados com o ID "+codigo+" foram apagados com sucesso.");
 		}
 		else {
 			System.out.println("ID null");
 		}
-	}
-
-	@PutMapping (path = "/api/usuario/atualizar/{codigo}")
-	public UserModel atualizar(@PathVariable("codigo") Integer codigo, @RequestBody UserModel usuario) {
-		usuario.setCodigo(codigo);
-		System.out.println("Atualizado os dados do usuário com o ID: "+codigo);
-		return repository.save(usuario);
 	}
 }

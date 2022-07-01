@@ -11,41 +11,45 @@ public class UserModel {
 	public Integer codigo;
 	
 	@Column(nullable = false, length = 50)
-	public String nome;
+	public String identificadorUnico;
 	
-	@Column(nullable = false, length = 10)
-	public String login;
+	@Column(length = 500)
+	public String discordname;
 	
-	@Column(nullable = false, length = 10)
-	public String senha;
-	
-	
+	@Column(length = 500)
+	public String username;
+
 	public Integer getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+
+	public String getIdentificadorUnico() {
+		return identificadorUnico;
 	}
 
-	
-	
+	public void setIdentificadorUnico(String identificadorUnico) {
+		this.identificadorUnico = identificadorUnico;
+	}
+
+	public String getDiscordname() {
+		return discordname;
+	}
+
+	public void setDiscordname(String discordname) {
+		this.discordname = discordname;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	
 }
