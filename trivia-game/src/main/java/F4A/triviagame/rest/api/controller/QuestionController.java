@@ -2,6 +2,7 @@ package F4A.triviagame.rest.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ public class QuestionController {
 	@Autowired
 	private QuestionRepository repository;
 	
+	@CrossOrigin
 	@GetMapping(path = "/api/questao/consultar/{codigo}")
 	public ResponseEntity consultar(@PathVariable("codigo") Integer codigo) {
 		System.out.println("Retornando o JSON dos dados associados com o código: "+codigo);
@@ -28,6 +30,7 @@ public class QuestionController {
 		
 	}
 	
+	@CrossOrigin
 	@PostMapping(path = "/api/questao/adicionar")
 	public QuestionModel adicionar(@RequestBody QuestionModel questao) {
 		int i = 1;
@@ -48,6 +51,7 @@ public class QuestionController {
 		return repository.save(questao);
 	}
 
+	@CrossOrigin
 	@PutMapping (path = "/api/questao/atualizar/{codigo}")
 	public QuestionModel atualizar(@PathVariable("codigo") Integer codigo, @RequestBody QuestionModel questao) {
 		questao.setCodigo(codigo);
@@ -55,6 +59,7 @@ public class QuestionController {
 		return repository.save(questao);
 	}
 	
+	@CrossOrigin 	 	
 	@DeleteMapping (path = "/api/questao/excluir/{codigo}")
 	public void excluir(@PathVariable("codigo") Integer codigo) {
 		if(codigo != null) {

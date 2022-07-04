@@ -18,6 +18,19 @@ public class UserModel {
 	
 	@Column(length = 500)
 	public String username;
+	
+	@Column(length = 500)
+	public int pontuacao;
+
+	
+	
+	public int getPontuacao() {
+		return pontuacao;
+	}
+
+	public void setPontuacao(int pontuacao) {
+		this.pontuacao = pontuacao;
+	}
 
 	public Integer getCodigo() {
 		return codigo;
